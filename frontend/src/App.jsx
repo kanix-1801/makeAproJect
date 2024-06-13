@@ -16,15 +16,15 @@ function App() {
   })
   return (
     <>
-      <h1>hello</h1>
-      <p>jokes : {jokes.length}</p>
+      {/* <h1>hello</h1> */}
+      <p className="text-3xl font-bold">jokes : {jokes.length}</p>
       {/* <p>jokes : {jokes.}</p> */}
 
       {
         jokes.map((joke, index) => {
           return (<div key={index}>
-            <h4>{joke.setup}</h4>
-            <h5>{joke.punchline}</h5>
+            <h4 className="text-2xl font-bold">{joke.setup}</h4>
+            <h5 className="text-2xl">{joke.punchline}</h5>
           </div>)
 
         })
