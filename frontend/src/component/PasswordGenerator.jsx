@@ -1,12 +1,43 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 
 const PasswordGenerator = () => {
     const [length, setLength] = useState(8);
     const [charAllowed, setCharAllowed] = useState(false);
-    const [symbolAllowed, setSymbolAllowed] = useState(false);
+    // const [symbolAllowed, setSymbolAllowed] = useState(false);
     const [numberAllowed, setNumberAllowed] = useState(false);
-
     const [password, setPassword] = useState("");
+
+    const generatePassword = useCallback(() => {
+        const stringChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const numbers = "0123456789";
+        const specialChars = "!@#$%^&*()_+{}[]|:;<>,.?/~`-=";
+        var str = stringChar;
+
+        if (numberAllowed) {
+            str = str + numbers;
+        }
+        if (charAllowed) {
+            str = str + specialChars;
+        }
+        var size = str.length;
+        let ans = "";
+
+        for (let i = 0; i < length; i++) {
+            let k = Math.floor(size * Math.random());
+            ans = ans + str.charAt(k);
+        }
+        setPassword(ans);
+        console.log(ans)
+    }, [length, numberAllowed, charAllowed])
+
+    useEffect(() => {
+        generatePassword();
+    }, [length, numberAllowed, charAllowed])
+    const passwordRef = useRef(null)
+    const copyTo = () => {
+        window.navigator.clipboard.writeText(password)
+        passwordRef.current?.select();
+    }
 
 
     return (<>
@@ -20,16 +51,19 @@ const PasswordGenerator = () => {
                         className="outline-none w-full py-1 px-3"
                         placeholder="Password"
                         readOnly
-                    // ref={passwordRef}
+                        ref={passwordRef}
                     />
-                    <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>Copy</button>
+                    {/* () => { window.navigator.clipboard.writeText(password) } */}
+                    <button onClick={copyTo()} className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>Copy</button>
                 </div>
                 <div className='flex text-sm gap-x-2'>
                     <div className='flex items-center gap-x-1'>
                         <input className='cursor-pointer'
                             type="range" min={6}
-                            max={100}
-                        // value={length}
+                            max={20}
+                            value={length}
+                            onChange={(e) => (setLength(e.target.value))}
+
                         />
                         <label>Length: {length}</label>
                     </div>
