@@ -1,7 +1,15 @@
-export default function App() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+import Home from './componentes/Home/Home'
+import Footer from './componentes/Footer/Footer'
+import AboutUs from './componentes/AboutUs/AboutUs';
+import ContactUs from './componentes/ContactUs/ContactUs';
+import Header from './componentes/Header/Header';
+import Github from './componentes/Github/Github';
+
+// function App() {
+//   return (
+//     <>
+//     </>
+//   )
+// }
+
+export { Home, Footer, AboutUs, ContactUs, Header, Github };
