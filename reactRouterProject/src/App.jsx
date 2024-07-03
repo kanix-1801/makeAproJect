@@ -3,7 +3,7 @@ import Footer from './componentes/Footer/Footer'
 import AboutUs from './componentes/AboutUs/AboutUs';
 import ContactUs from './componentes/ContactUs/ContactUs';
 import Header from './componentes/Header/Header';
-import Github from './componentes/Github/Github';
+import Github, { githubInfo } from './componentes/Github/Github';
 
 // function App() {
 //   return (
@@ -12,4 +12,4 @@ import Github from './componentes/Github/Github';
 //   )
 // }
 
-export { Home, Footer, AboutUs, ContactUs, Header, Github };
+export { Home, Footer, AboutUs, ContactUs, Header, Github, githubInfo };
